@@ -7,14 +7,47 @@
 [node name="Player_Sal" parent="." instance=ExtResource("1_uxrmd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.906494, 0)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="Level Geometry" type="CSGCombiner3D" parent="."]
+use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="Sandbox Box" type="CSGBox3D" parent="Level Geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.107109, 5.73039, -0.026989)
 use_collision = true
 size = Vector3(86.6045, 14.6248, 73.9893)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level Geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.138184, 9.37073, -0.493321)
 operation = 2
 size = Vector3(83.1247, 18.756, 70.4502)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3799, 2.86157, -30.0536)
+size = Vector3(9.53931, 6.37109, 11.2534)
+
+[node name="Steps" type="CSGCombiner3D" parent="Level Geometry"]
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level Geometry/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.812, 1.24759, -3.07729)
+size = Vector3(5.36804, 2.60181, 4.8822)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level Geometry/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1025, 0.903463, 0.75598)
+size = Vector3(4.54102, 1.7832, 3.74194)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level Geometry/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6099, 2.75846, -10.5225)
+size = Vector3(6.02234, 6.14191, 11.3647)
+
+[node name="Ramps" type="CSGCombiner3D" parent="Level Geometry"]
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Level Geometry/Ramps"]
+transform = Transform3D(-4.37114e-08, 0, -6.22797, 0, 0.938308, 0, 1, 0, -2.72233e-07, -22.4545, -0.00783581, 4.69138)
+polygon = PackedVector2Array(-0.340498, 0.00313264, -0.313976, 1.60509, 1.84219, -0.0145172)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Level Geometry/Ramps"]
+transform = Transform3D(1, 0, 0, 0, 0.938308, 0, 0, 0, 5.77449, -15.9244, 0.0400296, 4.38342)
+polygon = PackedVector2Array(-0.360061, -0.00367242, -0.350356, 1.55796, 1.84219, -0.0145172)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level Geometry/Ramps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3684, 0.731391, 1.57159)
+size = Vector3(6.18726, 1.54382, 5.56801)
