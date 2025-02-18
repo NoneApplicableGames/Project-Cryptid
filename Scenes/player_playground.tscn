@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk41cqvi842mn"]
+
+[ext_resource type="PackedScene" uid="uid://d0m6ujs7ypi6f" path="res://Scenes/player_sal.tscn" id="1_uxrmd"]
+
+[node name="PlayerPlayground" type="Node3D"]
+
+[node name="Player_Sal" parent="." instance=ExtResource("1_uxrmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.906494, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.107109, 5.73039, -0.026989)
+use_collision = true
+size = Vector3(86.6045, 14.6248, 73.9893)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.138184, 9.37073, -0.493321)
+operation = 2
+size = Vector3(83.1247, 18.756, 70.4502)
