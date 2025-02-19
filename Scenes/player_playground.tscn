@@ -4,8 +4,14 @@
 
 [node name="PlayerPlayground" type="Node3D"]
 
-[node name="Player_Sal" parent="." instance=ExtResource("1_uxrmd")]
+[node name="PlayerSal" parent="." instance=ExtResource("1_uxrmd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.906494, 0)
+
+[node name="CameraArm" type="Node3D" parent="PlayerSal"]
+
+[node name="Camera3D" type="Camera3D" parent="PlayerSal/CameraArm"]
+transform = Transform3D(1, 0, 0, 0, 0.94626, 0.323405, 0, -0.323405, 0.94626, 0, 4.34176, 7.32853)
+fov = 85.0
 
 [node name="Level Geometry" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -41,13 +47,74 @@ size = Vector3(6.02234, 6.14191, 11.3647)
 [node name="Ramps" type="CSGCombiner3D" parent="Level Geometry"]
 
 [node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Level Geometry/Ramps"]
-transform = Transform3D(-4.37114e-08, 0, -6.22797, 0, 0.938308, 0, 1, 0, -2.72233e-07, -22.4545, -0.00783581, 4.69138)
+transform = Transform3D(-4.37114e-08, 0, -6.22797, 0, 0.938308, 0, 1, 0, -2.72233e-07, -22.4755, -0.00783581, 4.67097)
 polygon = PackedVector2Array(-0.340498, 0.00313264, -0.313976, 1.60509, 1.84219, -0.0145172)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="Level Geometry/Ramps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3684, 0.503301, 1.57159)
+size = Vector3(6.18726, 2, 5.56801)
+
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Level Geometry/Ramps"]
-transform = Transform3D(1, 0, 0, 0, 0.938308, 0, 0, 0, 5.77449, -15.9244, 0.0400296, 4.38342)
+transform = Transform3D(1.00248, 0, 0, 0, 0.987662, 0, 0, 0, 5.55184, -15.9244, -0.0599704, 4.33764)
 polygon = PackedVector2Array(-0.360061, -0.00367242, -0.350356, 1.55796, 1.84219, -0.0145172)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Level Geometry/Ramps"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3684, 0.731391, 1.57159)
-size = Vector3(6.18726, 1.54382, 5.56801)
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="Level Geometry/Ramps"]
+transform = Transform3D(1.00248, 0, 0, 0, 0.987662, 0, 0, 0, 5.55184, -15.9244, -0.0599704, 4.33764)
+polygon = PackedVector2Array(-0.360061, -0.00367242, -0.350356, 1.55796, 1.84219, -0.0145172)
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="Level Geometry/Ramps"]
+transform = Transform3D(-4.38196e-08, 0, -6.1593, 0, 0.987662, 0, 1.00248, 0, -2.69231e-07, -22.4573, 3.94196, -3.61249)
+polygon = PackedVector2Array(-1.4, -4.4, -1.4129, 0.570147, 2.4, -2.5, 2.4, -4.4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level Geometry/Ramps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3684, 2.0033, -7.81007)
+size = Vector3(6.18726, 5, 5.56801)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level Geometry/Ramps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8387, 6.97881, -10.4619)
+size = Vector3(7.71582, 0.397461, 11.2643)
+
+[node name="CSGPolygon3D5" type="CSGPolygon3D" parent="Level Geometry/Ramps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.01904, -28.9843, 6.18484, -6.57387)
+polygon = PackedVector2Array(-0.0229931, 0.601222, 0, 1, 6.53989, -1.69734, 6.51886, -1.86975)
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="Level Geometry"]
+transform = Transform3D(2.1642, 0, 0, 0, 1.72221, 0, 0, 0, 2.29075, -16.2809, -0.0783605, 6.60706)
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 0)
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="Level Geometry/CSGPolygon3D3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -1.0613)
+operation = 1
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 0)
+
+[node name="Room" type="CSGCombiner3D" parent="Level Geometry"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level Geometry/Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7829, 3.14819, 21.1135)
+size = Vector3(17.7919, 6.27832, 0.405151)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level Geometry/Room"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.113, 3.14819, 27.8323)
+size = Vector3(13.7122, 6.27832, 0.405151)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level Geometry/Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.8269, 0.392192, 32.3599)
+size = Vector3(7.74329, 0.782349, 4.81244)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level Geometry/Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.3889, 1.86586, 33.8156)
+size = Vector3(4.57999, 2.17627, 1.94196)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level Geometry/Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3171, 0.197852, 29.4988)
+size = Vector3(4.22955, 0.388733, 3.15927)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Level Geometry/Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3157, 1.20312, 21.1135)
+operation = 2
+size = Vector3(5.57494, 2.38818, 0.405151)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level Geometry/Room"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.113, 2.41595, 25.027)
+operation = 2
+size = Vector3(5.0754, 4.81384, 0.405151)

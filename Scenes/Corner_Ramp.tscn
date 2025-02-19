@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bx1wsdryi3i2d"]
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6944, 0.80824, 0)
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 0)
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -1.0613)
+operation = 1
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 0)
