@@ -5,7 +5,7 @@
 [node name="PlayerPlayground" type="Node3D"]
 
 [node name="PlayerSal" parent="." instance=ExtResource("1_uxrmd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.906494, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41213, 0)
 
 [node name="CameraArm" type="Node3D" parent="PlayerSal"]
 
@@ -118,3 +118,6 @@ size = Vector3(5.57494, 2.38818, 0.405151)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.113, 2.41595, 25.027)
 operation = 2
 size = Vector3(5.0754, 4.81384, 0.405151)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.444229, 0.895913, 0, -0.895913, 0.444229, 0, 27, -14.1893)
