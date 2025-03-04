@@ -28,8 +28,10 @@ func _physics_process(delta: float) -> void:
 	
 	self.velocity = horrizontal_velocity
 	
-	const GRAVITY := Vector3.DOWN * 400.0
-	self.velocity += GRAVITY * delta
+	const GRAVITY := Vector3.DOWN * 600.0
+	
+	if !is_on_floor():
+		self.velocity += GRAVITY * delta
 	
 	move_and_slide()
 	
