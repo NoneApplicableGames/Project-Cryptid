@@ -13,12 +13,8 @@ config_version=5
 config/name="Project Crytpid"
 config/tags=PackedStringArray("project")
 run/main_scene="res://Scenes/player_playground.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
-
-[display]
-
-window/size/mode=2
 
 [file_customization]
 
@@ -83,4 +79,4 @@ camera_right={
 
 [physics]
 
-3d/physics_engine="JoltPhysics3D"
+3d/physics_engine="Jolt Physics"
