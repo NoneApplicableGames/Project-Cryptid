@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0m6ujs7ypi6f"]
 
-[ext_resource type="Script" uid="uid://boavg61kh1yk6" path="res://Scripts/Character_Controller.gd" id="1_yhlvm"]
-[ext_resource type="Script" uid="uid://dswv3kwcwyvti" path="res://Scripts/Camera_Controller.gd" id="2_a5mkg"]
+[ext_resource type="Script" uid="uid://boavg61kh1yk6" path="res://Scripts/Player_Character_Controller.gd" id="1_yhlvm"]
+[ext_resource type="Script" uid="uid://dswv3kwcwyvti" path="res://Scripts/Player_Camera_Controller.gd" id="2_a5mkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_01e71"]
 radius = 0.8
@@ -12,8 +12,6 @@ height = 2.04395
 
 [node name="Player_Sal" type="CharacterBody3D"]
 script = ExtResource("1_yhlvm")
-camera_x_lock_max = -80.0
-camera_x_lock_min = 80.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
