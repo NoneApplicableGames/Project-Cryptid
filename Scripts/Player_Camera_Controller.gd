@@ -4,6 +4,9 @@ class_name PlayerCameraController
 ##This script controls everything to do with the with the their person camera that follows the player.
 ##This includes moving the character around the player in response to mouse and analogue stick movement.
 
+#reference to the camera
+@onready var camera: Camera3D = %PlayerCamera
+
 ##Export varibles that allow us to fine tune camera behaviour.
 @export_category("Third Person Camera Settings")
 ##How fast the camera moves around the player.
@@ -14,25 +17,30 @@ class_name PlayerCameraController
 @export_range (-90, 90, 0.1) var camera_x_lock_min : float
 
 
+#camera will update every physics tick to keep it stable and smooth.
+#(Maybe this will backfire, we'll find out)
+
 func _physics_process(delta) -> void:
 	
 	#We want to rotate the camera around the player to keep the roatation consistent
 	
 	#Get mouse input.
-	var mouse_input : Vector2= get_viewport().get_mouse_position()
+	var mouse_input_2d : Vector2= get_viewport().get_mouse_position()
+	
 	
 	#mouse input is vector 2, need to convert to vector 3 for panning the camera
+	var camera_direction := Vector3(-mouse_input_2d.x, -mouse_input_2d.y, 0.0).normalized()
 	
-	self.create_tween()
-	
-	self.rotation= Vector3(mouse_input.x, mouse_input.y, 0.0)
+	self.rotation = camera_direction
 	
 	
 	#reset the camera's position to behind the player
 	if Input.is_action_just_pressed("camera_reset"):
 		self.rotation = Vector3(0,0,0)
 	
-	#pass placeholder to prevent errors
+	
+	
+	#pass placeholder to prevent errors if something gets commented out or removed.
 	pass
 
 
