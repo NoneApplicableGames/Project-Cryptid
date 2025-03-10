@@ -31,7 +31,10 @@ func _physics_process(delta) -> void:
 	#mouse input is vector 2, need to convert to vector 3 for panning the camera
 	var camera_direction := Vector3(-mouse_input_2d.x, -mouse_input_2d.y, 0.0).normalized()
 	
-	self.rotation = camera_direction
+	
+	
+	
+	#self.rotation = camera_direction
 	
 	
 	#reset the camera's position to behind the player
