@@ -17,30 +17,65 @@ class_name PlayerCameraController
 func _physics_process(delta) -> void:
 	
 	#We want to rotate the camera around the player to keep the roatation consistent
-	var camera_input : Vector2 = Input.get_vector("camera_up", "camera_down", "camera_left", "camera_right")
+	
+	#Get mouse input.
+	var mouse_input : Vector2= get_viewport().get_mouse_position()
+	
+	#mouse input is vector 2, need to convert to vector 3 for panning the camera
+	
+	self.create_tween()
+	
+	self.rotation= Vector3(mouse_input.x, mouse_input.y, 0.0)
+	
+	
+	#reset the camera's position to behind the player
+	if Input.is_action_just_pressed("camera_reset"):
+		self.rotation = Vector3(0,0,0)
+	
+	#pass placeholder to prevent errors
+	pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	#convert to vector 3, as Node3D.rotate_object_local requires vector3 parameter
 	
-	var camera_vector := Vector3(camera_input.x, camera_input.y, 0.0)
+	#var camera_vector := Vector3(camera_input.x, camera_input.y, 0.0)
 	
 	# Checking the vector != before rotating reduces errors in debugging.
 	#for some reason godot takes issue with this implmenetation of camera movement
 	#even though it gets an intentional result.
 	
-	if camera_vector != Vector3.ZERO:
+	#if camera_vector != Vector3.ZERO:
 		
-		print(self.rotation_degrees)
+		#print(self.rotation_degrees)
 		
 		#lock camera from going above a certain threshold and looping around the character
-		if %CameraArm.rotation_degrees.x >= camera_x_lock_max:
-			%CameraArm.rotate(camera_vector, camera_pan_speed)
+		#if %CameraArm.rotation_degrees.x >= camera_x_lock_max:
+			#%CameraArm.rotate(camera_vector, camera_pan_speed)
 		
 	
 	
 	#allow player to reset camera to behind sal if its screwed up too much
-	if Input.is_action_just_pressed("camera_reset"):
+	#if Input.is_action_just_pressed("camera_reset"):
 		#temp solution. setting x roation to player rotation should always mean the
 		#camera is behind sal for now.
 		
-		self.rotation= Vector3(self.rotation.x,0,0)
+		#self.rotation= Vector3(self.rotation.x,0,0)
 	
