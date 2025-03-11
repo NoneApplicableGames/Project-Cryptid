@@ -8,10 +8,16 @@ class_name PlayerCharacterController
 
 #Export properties for anything we need to tune the value for.
 
-@export_category("Walking Properties")
+@export_category("Movement Properties")
 @export var acceleration : float
 @export var max_speed : float = 10.0
 @export var friction : float
+
+@export_category("Jump Properties")
+@export var jump_force : float = 100.0
+
+@export_category("Falling Properties")
+@export var weight : float = 1.0
 
 
 @onready var camera_arm: Node3D = %CameraArm
@@ -30,8 +36,14 @@ func _physics_process(delta: float) -> void:
 		var horrizontal_velocity := move_direction * max_speed
 		self.velocity = horrizontal_velocity
 	
+	else: 
+		self.velocity = Vector3.ZERO
+	
 	
 	const GRAVITY := Vector3.DOWN * 600.0
+	
+	if is_on_floor() && Input.is_action_just_pressed("jump"):
+		self.velocity.y = jump_force
 	
 	if !is_on_floor():
 		self.velocity += GRAVITY * delta
