@@ -1,8 +1,6 @@
 extends Node3D
-class_name PlayerCameraController
 
-##This script controls everything to do with the with the their person camera that follows the player.
-##This includes moving the character around the player in response to mouse and analogue stick movement.
+##Old script for handling camera movement using the arrow keys. 
 
 #reference to the camera
 @onready var camera: Camera3D = %PlayerCamera
@@ -25,16 +23,16 @@ func _physics_process(delta) -> void:
 	#We want to rotate the camera around the player to keep the roatation consistent
 	
 	#Get mouse input.
-	var mouse_input_2d : Vector2= get_viewport().get_mouse_position()
+	var camera_direction_2d = Input.get_vector("camera_down", "camera_up", "camera_left", "camera_right")
 	
 	
 	#mouse input is vector 2, need to convert to vector 3 for panning the camera
-	var camera_direction := Vector3(-mouse_input_2d.x, -mouse_input_2d.y, 0.0).normalized()
+	var camera_direction := Vector3(-camera_direction_2d.x, camera_direction_2d.y, 0.0).normalized()
 	
 	
-	
-	
-	#self.rotation = camera_direction
+	#check if camera_direction is not null to prevent errors
+	if camera_direction != Vector3.ZERO:
+		self.rotate(camera_direction, camera_pan_speed)
 	
 	
 	#reset the camera's position to behind the player

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0m6ujs7ypi6f"]
 
 [ext_resource type="Script" uid="uid://boavg61kh1yk6" path="res://Scripts/Player_Character_Controller.gd" id="1_yhlvm"]
-[ext_resource type="Script" uid="uid://dswv3kwcwyvti" path="res://Scripts/Player_Camera_Controller.gd" id="2_a5mkg"]
+[ext_resource type="Script" uid="uid://cu0af2cy5yyof" path="res://Scripts/camera_controller.gd" id="2_a5mkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_01e71"]
 radius = 0.8
