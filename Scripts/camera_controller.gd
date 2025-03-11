@@ -25,6 +25,8 @@ func _ready() -> void:
 	
 	if get_viewport().get_mouse_position() == null:
 		print("PlayerCameraController is not detecting mouse input. Did you remeber to plug a mouse in?")
+	else:
+		print("Mouse input detected!") 
 
 
 #Physics process loop
