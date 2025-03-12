@@ -27,6 +27,8 @@ func _ready() -> void:
 		print("PlayerCameraController is not detecting mouse input. Did you remeber to plug a mouse in?")
 	else:
 		print("Mouse input detected!") 
+	
+	
 
 
 #Physics process loop
@@ -37,7 +39,9 @@ func _physics_process(delta: float) -> void:
 	if get_viewport().get_mouse_position() != null:
 		var mouse_pos_2d : Vector2 = get_viewport().get_mouse_position()
 	
-	
+	#stops unessecary input issues if joypad isnt connected.
+	if Input.get_connected_joypads().is_empty():
+		var analogue_stick_ = Input.get_vector("camera_left", "camera_right", "camera_down", "camera_up")
 	
 	#pass is placeholder
 	pass
