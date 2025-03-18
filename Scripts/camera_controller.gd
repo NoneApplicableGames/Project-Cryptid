@@ -18,7 +18,7 @@ extends Node3D
 
 var _ground_plane := Plane(Vector3.UP) ##Defines a rigid normal vector for the camera to rotate around.
 
-var mouse_pos_2d : Vector2
+var mouse_pos_2d : Vector2 ##mouse position is captured using in this scope so that it can be reset with camera_rest
 
 @onready var _player_camera: Camera3D = %PlayerCamera ## Reference to third person camera.
 
@@ -57,7 +57,6 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("camera_reset"):
 		self.rotation = Vector3.ZERO
-		
 		mouse_pos_2d = Vector2.ZERO
 
 	
