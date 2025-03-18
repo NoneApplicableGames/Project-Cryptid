@@ -30,6 +30,8 @@ func _ready() -> void:
 	else:
 		print("Mouse input detected!") 
 	
+	#Hide ugly mouse cursor.
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 
 
@@ -48,6 +50,8 @@ func _physics_process(delta: float) -> void:
 		
 		if  mouse_ray != null:
 			self.look_at(mouse_ray)
+		
+	
 	
 	#stops unessecary input issues if joypad isnt connected.
 	if Input.get_connected_joypads().is_empty():
