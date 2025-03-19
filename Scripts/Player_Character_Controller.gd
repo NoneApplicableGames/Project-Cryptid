@@ -6,21 +6,20 @@ class_name PlayerCharacterController
 ##It governs everything in relation on player physics and input handling.
 
 
-#Export properties for anything we need to tune the value for.
+##Export properties for anything we need to tune the value for.
 
 @export_category("Movement Properties")
-@export var acceleration : float
-@export var max_speed : float = 10.0
-@export var friction : float
+@export var max_speed : float = 10.0 ## Max speed the player can achive horrizontally.
+@export var acceleration : float ## The force applied to the player as they accelerate along the ground.
+@export var friction : float ## The force applied to the player as they come to a stop.
 
 @export_category("Jump Properties")
-@export var jump_force : float = 100.0
+@export var jump_force : float = 100.0 ##The force applied to the player when they initally jump.
 
 @export_category("Falling Properties")
-@export var weight : float = 1.0
+@export var mass : float = 1.0 ## The mass of the player character.
+const GRAVIY := 1.0 * Vector3.DOWN ##The force of gravity
 
-
-@onready var camera_arm: Node3D = %CameraArm
 
 func _physics_process(delta: float) -> void:
 	##Player movement physics
@@ -40,13 +39,12 @@ func _physics_process(delta: float) -> void:
 		self.velocity = Vector3.ZERO
 	
 	
-	const GRAVITY := Vector3.DOWN * 600.0
 	
 	if is_on_floor() && Input.is_action_just_pressed("jump"):
-		self.velocity.y = jump_force
+		self.velocity.y += jump_force
 	
 	if !is_on_floor():
-		self.velocity += GRAVITY * delta
+		self.velocity += GRAVIY * mass
 	
 	move_and_slide()
 	

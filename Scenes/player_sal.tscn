@@ -12,6 +12,8 @@ height = 2.04395
 
 [node name="Player_Sal" type="CharacterBody3D"]
 script = ExtResource("1_yhlvm")
+jump_force = 2000.0
+mass = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
