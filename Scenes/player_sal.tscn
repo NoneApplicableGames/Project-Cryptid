@@ -26,6 +26,8 @@ shape = SubResource("CapsuleShape3D_wsdrd")
 [node name="CameraArm" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_a5mkg")
+camera_analogue_speed = 0.1
+max_vertical_lock = 85
 
 [node name="PlayerCamera" type="Camera3D" parent="CameraArm"]
 unique_name_in_owner = true
