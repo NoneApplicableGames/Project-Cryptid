@@ -12,8 +12,9 @@ height = 2.04395
 
 [node name="Player_Sal" type="CharacterBody3D"]
 script = ExtResource("1_yhlvm")
-jump_force = 2000.0
-mass = 10.0
+jump_velocity = 200.0
+mass = 2000.0
+terminal_velocity = 2000.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -35,3 +36,6 @@ max_vertical_lock = 85
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.946261, 0.323405, 0, -0.323405, 0.946261, 0, 4.34176, 8.27295)
 fov = 80.0
+
+[node name="ProjectileRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, -1.03371)
