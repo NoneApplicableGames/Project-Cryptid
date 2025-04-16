@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0m6ujs7ypi6f"]
 
-[ext_resource type="Script" uid="uid://boavg61kh1yk6" path="res://Scripts/Player_Character_Controller.gd" id="1_yhlvm"]
+[ext_resource type="Script" uid="uid://jtmjx7j25yh2" path="res://Scripts/player_character_controller_take_two.gd" id="1_a5mkg"]
 [ext_resource type="Script" uid="uid://cu0af2cy5yyof" path="res://Scripts/camera_controller.gd" id="2_a5mkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_01e71"]
@@ -10,17 +10,22 @@ radius = 0.8
 radius = 0.8
 height = 2.04395
 
-[node name="Player_Sal" type="CharacterBody3D"]
-script = ExtResource("1_yhlvm")
-jump_velocity = 200.0
-mass = 2000.0
-terminal_velocity = 2000.0
+[node name="PlayerSal" type="CharacterBody3D"]
+script = ExtResource("1_a5mkg")
+max_speed = 15.0
+jump_force = 300.0
+down_force = 10.0
+gravity = 500.0
+terminal_velocity = 850.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="PlayerModel" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_01e71")
 
 [node name="CollisionHull" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_wsdrd")
 
@@ -38,4 +43,5 @@ transform = Transform3D(1, 0, 0, 0, 0.946261, 0.323405, 0, -0.323405, 0.946261, 
 fov = 80.0
 
 [node name="ProjectileRaycast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(-1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, -1.03371)

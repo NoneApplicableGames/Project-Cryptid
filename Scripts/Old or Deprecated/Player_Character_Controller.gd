@@ -1,5 +1,4 @@
 extends CharacterBody3D
-class_name PlayerCharacterController
 
 
 ##The script to handle the character's movement.
@@ -14,15 +13,19 @@ class_name PlayerCharacterController
 @export var friction : float ## The force applied to the player as they come to a stop.
 
 
-@export_category("Move Movement Properties")
-@export var jump_velocity : float = 10.0 ##The force applied to the player when they initally jump.
-@export var mass := 17.0 ##constant force of gravity applied to falling player
+@export_category("Air Movement Properties")
+@export_range(1.0, 100.0, 0.1) var jump_velocity : float = 10.0 ##The force applied to the player when they initally jump.
+@export_range(0, 1, 0.1) var jump_arc_percentage : float = 0.5 ##The percentage of the jump force that will be applied when the player starts jumping to create a smooth arc
+@export var gravity := 17.0 ##constant force of gravity applied to falling player
 @export var terminal_velocity := 20.0 ##player's max falling speed
-var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var _jumping : bool = false
 
 func _physics_process(delta: float) -> void:
-	##Player movement physics
+	###Player movement physics
+	
+	
+	##How the player moves on the ground
 	var move_input_vector : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
 	
@@ -38,19 +41,25 @@ func _physics_process(delta: float) -> void:
 	else: 
 		self.velocity = Vector3.ZERO
 	
+	##How the player moves in the air
 	
+	#the down_force is a force caculated every cycle to put the player down to simulate gravity
+	#we put it here so we can use it in other statements to apply gravity only as needed.
+	var down_force := (gravity * delta) * Vector3.DOWN
 	
 	if Input.is_action_pressed("jump"):
+		# the upwards force is the force that is applied to the player while jumping
 		var upwards_force := (jump_velocity * delta) * Vector3.UP
-		if is_on_floor():
-			# start by adding a fraction of the jump force into the 
-			self.velocity.y
+		if is_on_floor() && _jumping == false:
+			
+			# start by adding a fraction of the jump force to the current velocity
+			# we're aiming for a smooth arc
+			self.velocity += upwards_force
 	
 	# gravity should only be applied if the player is falling. the player shouldnt have to fight
 	# gravity when jumping
 	if !is_on_floor():
-		#check if the jump button is being held before 
-		var down_force := (mass * gravity * delta) * Vector3.DOWN
+		#check if the player is currently jumping before applying gravity
 		self.velocity += down_force
 		# clamp fall speed so it doesnt go over terminal velocity
 		# we use maxf since velocity.y never needs a minimum value

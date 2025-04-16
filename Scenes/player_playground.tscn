@@ -5,8 +5,7 @@
 [node name="PlayerPlayground" type="Node3D"]
 
 [node name="PlayerSal" parent="." instance=ExtResource("1_uxrmd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11622, 0)
-mass = 17.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08422, 0)
 
 [node name="Level Geometry" type="CSGCombiner3D" parent="."]
 use_collision = true
