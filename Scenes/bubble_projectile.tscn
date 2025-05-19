@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf4spy83kncqi"]
+
+[ext_resource type="Material" uid="uid://c1maoqihy37d3" path="res://Materials/Bubble_Material.tres" id="1_mtqxp"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hlj57"]
+material = ExtResource("1_mtqxp")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mtqxp"]
+
+[node name="BubbleProjectile" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_hlj57")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("SphereShape3D_mtqxp")

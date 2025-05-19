@@ -12,19 +12,19 @@ class_name PlayerCharacterController
 
 @export_category("Ground Movement Properties")
 @export var max_speed : float ## Max speed the player can achive horrizontally.
-@export var acceleration : float ## The force applied to the player as they accelerate along the ground.
-@export var friction : float ## The force applied to the player as they come to a stop.
+@export var ground_acceleration : float = 10.0 ## The force applied to the player as they accelerate along the ground.
+@export var ground_friction : float = 10.0 ## The force applied to the player as they come to a stop.
 
 @export_category("Air Movement Properties")
+@export var air_accleration : float = 10.0
+@export var air_friction : float = 10.0
 @export_range(1.0, 500.0, 0.1) var jump_force : float = 10.0 ## The force applied to the player when they initally jump.
-@export_range(1.0, 100.0, 0.1) var down_force : float = 1.0 ## A downwards force applied to the player's jump as they are rising to create a proper parabolic arc 
 @export_range(1.0, 500.0, 0.1) var gravity := 17.0 ##constant force of gravity applied to falling player
 @export_range(1.0, 1000.0, 0.1) var terminal_velocity := 20.0 ##player's max falling speed
-var _intial_jump_force : float ##proxy varible to store jump force as it decreases over the course of the arc. Allows it to be reset later.
 var _jumping : bool = false
-
-func _ready() -> void:
-	_intial_jump_force = jump_force
+var _accel : float ##proxy varible to store vertical speed
+var _gravity_vec := Vector3.ZERO
+var _horrizontal_movement := Vector3.ZERO 
 
 func _physics_process(delta: float) -> void:
 	###Player movement physics
@@ -37,53 +37,27 @@ func _physics_process(delta: float) -> void:
 	
 	var move_direction := Vector3 (move_input_vector.x, 0.0, move_input_vector.y)
 	
-	#check if input vector is ZERO to reduce unesscary errors
-	if move_direction != Vector3.ZERO:
-		var horrizontal_velocity := move_direction * max_speed
-		self.velocity = horrizontal_velocity
 	
-	else: 
-		self.velocity = Vector3.ZERO
 	
+	##Handles everything to do with falling
+	#We want the player to rise and fall in a smooth parabola
+	
+	if is_on_floor():
+		_gravity_vec = Vector3.ZERO
+		if move_direction: _accel = ground_acceleration
+		else: _accel = ground_friction
+	
+	else:
+		_gravity_vec += -up_direction * gravity * delta
+		if move_direction: _accel = air_accleration
+		else: _accel = air_friction
 	
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		
-		#to create a smooth parabola we want to decrease the amount of velocity evey physics tick.
-		
-		var jump : Vector3= jump_force * self.up_direction * delta
-		
-		self.velocity.y += jump_force
-		
-		_jumping = true
+		_gravity_vec = up_direction * jump_force
 	
-	##Handles everything to do with falling
-	
-	if !is_on_floor():
-		
-		if !_jumping && self.velocity.y >= 0:
-			
-			self.velocity -= gravity * self.up_direction * delta
-			
-		
-		if _jumping:
-			
-			jump_force -= down_force
-			
-			var jump : Vector3= jump_force * self.up_direction * delta
-			
-			self.velocity.y += jump_force
-		
-		#clamp speed to prevent decent from going over terminal velocity
-		#we use maxf since we dont need a minium value for velocity
-		
-		self.velocity.y = maxf(self.velocity.y, -terminal_velocity)
-	
-	#reset when on floor
-	if is_on_floor():
-		
-		_jumping = false
-		jump_force = _intial_jump_force
-	
-	
+	#Interpolate horrizontal movement to create a smooth sense of accerating an deccelerating
+	_horrizontal_movement = _horrizontal_movement.lerp(move_direction * max_speed , _accel * delta)
+	self.velocity = _horrizontal_movement + _gravity_vec
 	move_and_slide()

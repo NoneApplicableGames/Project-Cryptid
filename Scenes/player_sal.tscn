@@ -13,10 +13,9 @@ height = 2.04395
 [node name="PlayerSal" type="CharacterBody3D"]
 script = ExtResource("1_a5mkg")
 max_speed = 15.0
-jump_force = 300.0
-down_force = 10.0
-gravity = 500.0
-terminal_velocity = 850.0
+jump_force = 30.0
+gravity = 65.0
+terminal_velocity = 1.0
 
 [node name="PlayerModel" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
